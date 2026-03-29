@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { getApiUrl } from "../lib/api";
 
 export default function Upload({ onUpload }) {
   const [loading, setLoading] = useState(false);
@@ -15,7 +16,7 @@ export default function Upload({ onUpload }) {
     formData.append("pdf", file);
 
     try {
-      const res = await fetch("http://localhost:5000/upload", {
+      const res = await fetch(getApiUrl("/upload"), {
         method: "POST",
         body: formData,
       });

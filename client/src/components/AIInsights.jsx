@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { getApiUrl } from "../lib/api";
 
 const BUTTON_COOLDOWN_SECONDS = 15;
 
@@ -30,7 +31,7 @@ export default function AIInsights({ transactions }) {
     setCooldownLeft(BUTTON_COOLDOWN_SECONDS);
 
     try {
-      const res = await fetch("http://localhost:5000/ai/insights", {
+      const res = await fetch(getApiUrl("/ai/insights"), {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ transactions }),
